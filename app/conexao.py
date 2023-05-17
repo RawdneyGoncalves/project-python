@@ -1,4 +1,10 @@
 from pymongo import MongoClient
+import os
+from dotenv import load_dotenv
 
-client = MongoClient('mongodb://localhost:27017')
-db = client['mydatabase']
+host = os.getenv('MONGO_HOST')
+port = int(os.getenv('MONGO_PORT'))
+db_name = os.getenv('MONGO_DB')
+
+client = MongoClient(host, port)
+db = client[db_name]

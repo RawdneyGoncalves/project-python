@@ -1,7 +1,10 @@
-from flask import Flask
+from faker import Faker
 
-app = Flask(__name__)
+fake = Faker()
 
-@app.route('/')
-def hello():
-    return 'Olá, Flask!'
+def generate_fake_data():
+    name = fake.name()
+    email = fake.email()
+    phone = fake.phone_number()
+
+    return {'name': name, 'email': email, 'phone': phone}

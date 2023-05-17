@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from fake_data import generate_fake_data
 from conexao import db
 
 user_controller = Blueprint('user_controller', __name__)
@@ -10,11 +11,9 @@ def get_users():
 
 @user_controller.route('/users', methods=['POST'])
 def create_user():
-    data = request.get_json()
-    name = data['name']
-    user = {'name': name}
-    db.users.insert_one(user)
-    return jsonify(user), 201
+    data = generate_fake_data()
+    db.users.insert_one(data)
+    return jsonify(data), 201
 
 @user_controller.route('/users/<string:user_id>', methods=['GET'])
 def get_user(user_id):

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from fake_data import generate_fake_data
+from testeController import generate_fake_data
 from conexao import db
 
 user_controller = Blueprint('user_controller', __name__)
